@@ -1,4 +1,4 @@
-<img src="https://www.chsu.ru/local/templates/main/images/logo.svg" alt="drawing" width="150"/>
+<img src="https://raw.githubusercontent.com/vovchic17/static/main/src/logo.svg" alt="drawing" width="150"/>
 
 
 # CHSUScheduleAPI
