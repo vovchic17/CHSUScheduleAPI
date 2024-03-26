@@ -32,6 +32,8 @@ class AiohttpClient(ABCHttpClient):
         response = await self._session.request(
             method=method, url=url, data=data, **kwargs
         )
+        if "Пожалуйста авторизуйтесь" in await response.text():
+            raise CHSUApiResponseError(response.status, "Unauthorized")
         if response.content_type != "application/json":
             raise CHSUApiResponseError(
                 response.status,
