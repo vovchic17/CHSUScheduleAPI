@@ -1,4 +1,4 @@
 from .abc import ABCApi
-from .api import AiohttpClient
+from .api import CHSUApi
 
-__all__ = ("ABCApi", "AiohttpClient")
+__all__ = ("ABCApi", "CHSUApi")

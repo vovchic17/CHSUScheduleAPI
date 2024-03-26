@@ -21,7 +21,7 @@ API wrapper for [CHSU schedule API](api.chsu.ru)
 ```python
 import asyncio
 
-from chsu_api.api.api import CHSUApi
+from chsu_schedule_api import CHSUApi
 
 client = CHSUApi(username="USERNAME", password="PASSWORD")
 
