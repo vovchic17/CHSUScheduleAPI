@@ -1,9 +1,9 @@
 [tool.poetry]
-name = "chsu_api"
+name = "chsu_schedule_api"
 version = "0.1.0"
 description = "Simplified API wrapper for CHSU schedule API"
 authors = ["VoVcHiC"]
-license = "MIT"
+license = "LICENSE"
 readme = "README.md"
 
 [tool.poetry.dependencies]

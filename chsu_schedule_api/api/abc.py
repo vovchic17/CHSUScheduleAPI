@@ -1,11 +1,11 @@
 from abc import ABC, abstractmethod
 from typing import TYPE_CHECKING
 
-from chsu_api.constants import BASE_URL
+from chsu_schedule_api.constants import BASE_URL
 
 if TYPE_CHECKING:
-    from chsu_api.client.abc import ABCHttpClient
-    from chsu_api.enums import Methods
+    from chsu_schedule_api.client.abc import ABCHttpClient
+    from chsu_schedule_api.enums import Methods
 
 
 class ABCApi(ABC):

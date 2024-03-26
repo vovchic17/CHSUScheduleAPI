@@ -1,8 +1,8 @@
 from datetime import datetime
 from typing import TYPE_CHECKING
 
-from chsu_api.client.aiohttp import AiohttpClient
-from chsu_api.constants import (
+from chsu_schedule_api.client.aiohttp import AiohttpClient
+from chsu_schedule_api.constants import (
     AUDITORIUM,
     AUTH_SIGNIN,
     AUTH_VALID,
@@ -13,21 +13,23 @@ from chsu_api.constants import (
     TEACHER,
     TIMETABLE,
 )
-from chsu_api.enums import Methods
-from chsu_api.errors import CHSUApiResponseError
-from chsu_api.models.auditorium import Auditorium
-from chsu_api.models.building import Building
-from chsu_api.models.department import Department
-from chsu_api.models.discipline import Discipline
-from chsu_api.models.student_group import StudentGroup
-from chsu_api.models.teacher import Teacher
-from chsu_api.models.timetable import TimeTable
+from chsu_schedule_api.enums import Methods
+from chsu_schedule_api.errors import CHSUApiResponseError
+from chsu_schedule_api.models import (
+    Auditorium,
+    Building,
+    Department,
+    Discipline,
+    StudentGroup,
+    Teacher,
+    TimeTable,
+)
 
 from .abc import ABCApi
 
 if TYPE_CHECKING:
-    from chsu_api.client.abc import ABCHttpClient
-    from chsu_api.models.timetable import TimeTableType
+    from chsu_schedule_api.client.abc import ABCHttpClient
+    from chsu_schedule_api.models import TimeTableType
 
 
 class CHSUApi(ABCApi):

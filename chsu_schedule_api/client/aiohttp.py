@@ -1,6 +1,6 @@
 from aiohttp import ClientSession
 
-from chsu_api.errors import CHSUApiResponseError
+from chsu_schedule_api.errors import CHSUApiResponseError
 
 from .abc import ABCHttpClient
 

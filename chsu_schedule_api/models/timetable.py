@@ -3,9 +3,9 @@ from datetime import datetime, timedelta, timezone
 
 from pydantic import Field, validator
 
-from chsu_api.models.building import Building
-from chsu_api.models.discipline import Discipline
-from chsu_api.models.teacher import Teacher
+from chsu_schedule_api.models.building import Building
+from chsu_schedule_api.models.discipline import Discipline
+from chsu_schedule_api.models.teacher import Teacher
 
 from .base import CHSUModel
 
@@ -50,7 +50,7 @@ class Group(TimeTableType):
         )
 
 
-class Full(TimeTableType):
+class TTFull(TimeTableType):
     """Full time table model"""
 
     @property
@@ -62,12 +62,12 @@ class Full(TimeTableType):
         )
 
 
-class StudentGroup(CHSUModel):
+class TTStudentGroup(CHSUModel):
     id: int
     title: str
 
 
-class Auditory(CHSUModel):
+class TTAuditory(CHSUModel):
     id: int
     title: str
 
@@ -78,9 +78,9 @@ class TimeTable(CHSUModel):
     start_time: str = Field(alias="startTime")
     end_time: str = Field(alias="endTime")
     discipline: Discipline
-    groups: list[StudentGroup]
+    groups: list[TTStudentGroup]
     build: Building | None
-    auditory: Auditory
+    auditory: TTAuditory
     lecturers: list[Teacher]  # can be empty
     abbrlessontype: str | None
     lessontype: str | None
