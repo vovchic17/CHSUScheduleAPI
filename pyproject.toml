@@ -2,7 +2,7 @@
 name = "chsu_schedule_api"
 version = "0.1.0"
 description = "Simplified API wrapper for CHSU schedule API"
-authors = ["VoVcHiC"]
+authors = ["VoVcHiC <hello@chsutech.ru>"]
 license = "LICENSE"
 readme = "README.md"
 

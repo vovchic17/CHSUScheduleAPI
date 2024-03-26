@@ -6,3 +6,4 @@ poetry.lock
 .env
 .venv
 test.py
+dist
