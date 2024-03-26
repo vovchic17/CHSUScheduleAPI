@@ -1,0 +1,64 @@
+[tool.poetry]
+name = "chsu_api"
+version = "0.1.0"
+description = "Simplified API wrapper for CHSU schedule API"
+authors = ["VoVcHiC"]
+license = "MIT"
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.12"
+pydantic = "^2.6.3"
+aiohttp = "^3.9.3"
+
+[tool.ruff]
+line-length = 79
+indent-width = 4
+target-version = "py312"
+
+[tool.ruff.lint]
+ignore = [
+    "ANN101",
+    "ANN102",
+    "ANN002",
+    "ANN003",
+    "D100",
+    "D101",
+    "D103",
+    "D104",
+    "D106",
+    "D107",
+    "D203",
+    "D205",
+    "D212",
+    "D400",
+    "D415",
+    "COM812",
+    "RUF001",
+    "RUF002",
+    "RUF003",
+    "PLR0913",
+    "PLR2004",
+    "PD011",
+    "S101",
+]
+select = ["ALL"]
+fixable = ["ALL"]
+
+[tool.ruff.format]
+quote-style = "double"
+indent-style = "space"
+docstring-code-line-length = "dynamic"
+
+[[tool.mypy.overrides]]
+module = "*.*"
+disable_error_code = [
+    "call-arg",
+    "import-not-found",
+    "import-untyped",
+    "union-attr",
+]
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
