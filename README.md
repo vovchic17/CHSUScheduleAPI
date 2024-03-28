@@ -19,6 +19,14 @@ Asynchronous API wrapper for [CHSU schedule API](api.chsu.ru)
 * Discipline (get list of discipline)
 * Teacher (get list of lecturers)
 
+## Installation
+
+Install via pip
+
+```shell
+pip install chsu_schedule_api
+```
+
 ## Example
 ```python
 import asyncio
