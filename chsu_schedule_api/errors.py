@@ -4,3 +4,7 @@ class CHSUApiBaseError(Exception):
 
 class CHSUApiResponseError(CHSUApiBaseError):
     """Api response is invalid"""
+
+
+class CHSUApiUnauthorizedError(CHSUApiBaseError):
+    """Unauthorized"""

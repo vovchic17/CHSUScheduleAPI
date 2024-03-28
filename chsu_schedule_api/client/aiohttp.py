@@ -1,6 +1,9 @@
 from aiohttp import ClientSession
 
-from chsu_schedule_api.errors import CHSUApiResponseError
+from chsu_schedule_api.errors import (
+    CHSUApiResponseError,
+    CHSUApiUnauthorizedError,
+)
 
 from .abc import ABCHttpClient
 
@@ -33,7 +36,7 @@ class AiohttpClient(ABCHttpClient):
             method=method, url=url, data=data, **kwargs
         )
         if "Пожалуйста авторизуйтесь" in await response.text():
-            raise CHSUApiResponseError(response.status, "Unauthorized")
+            raise CHSUApiUnauthorizedError
         if response.content_type != "application/json":
             raise CHSUApiResponseError(
                 response.status,

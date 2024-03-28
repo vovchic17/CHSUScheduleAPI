@@ -14,7 +14,10 @@ from chsu_schedule_api.constants import (
     TIMETABLE,
 )
 from chsu_schedule_api.enums import Methods
-from chsu_schedule_api.errors import CHSUApiResponseError
+from chsu_schedule_api.errors import (
+    CHSUApiResponseError,
+    CHSUApiUnauthorizedError,
+)
 from chsu_schedule_api.models import (
     Auditorium,
     Building,
@@ -60,7 +63,9 @@ class CHSUApi(ABCApi):
             if resp.get("error", object) is None:
                 self._headers["Authorization"] = f'Bearer {resp["data"]}'
                 return True
-            raise CHSUApiResponseError(resp["code"], resp["description"])
+            raise CHSUApiUnauthorizedError(
+                resp["error"]["code"], resp["error"]["description"]
+            )
         raise CHSUApiResponseError(resp)
 
     async def auth_valid(self, token: str) -> bool:
