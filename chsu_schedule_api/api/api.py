@@ -48,7 +48,7 @@ class CHSUApi(ABCApi):
         self._auth_data = {"username": username, "password": password}
         self._client = client or AiohttpClient()
 
-    async def auth_signin(self) -> True:
+    async def auth_signin(self) -> bool:
         """
         Authorize
         Returns true on success
