@@ -5,7 +5,7 @@
 [![Pydantic v2](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/pydantic/pydantic/main/docs/badge/v2.json)](https://pydantic.dev)
 [![Aiohttp](https://img.shields.io/badge/aiohttp-v3.9.3-2c5bb4?logo=aiohttp)](https://docs.aiohttp.org/en/stable/)
 
-API wrapper for [CHSU schedule API](api.chsu.ru)
+Asynchronous API wrapper for [CHSU schedule API](api.chsu.ru)
 
 ## Covered methods
 * Auth (validate token and sign in)

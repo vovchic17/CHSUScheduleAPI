@@ -1,7 +1,7 @@
 [tool.poetry]
 name = "chsu_schedule_api"
-version = "1.0.0"
-description = "Simplified API wrapper for CHSU schedule API"
+version = "1.0.2"
+description = "Asynchronous API wrapper for CHSU schedule API"
 authors = ["VoVcHiC <hello@chsutech.ru>"]
 license = "MIT"
 readme = "README.md"
@@ -10,6 +10,10 @@ readme = "README.md"
 python = "^3.12"
 pydantic = "^2.6.3"
 aiohttp = "^3.9.3"
+
+[tool.poetry.group.dev.dependencies]
+ruff = "^0.3.4"
+mypy = "^1.9.0"
 
 [tool.ruff]
 line-length = 79
