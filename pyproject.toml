@@ -1,10 +1,14 @@
 [tool.poetry]
 name = "chsu_schedule_api"
-version = "1.0.2"
+version = "1.0.3"
 description = "Asynchronous API wrapper for CHSU schedule API"
 authors = ["VoVcHiC <hello@chsutech.ru>"]
 license = "MIT"
 readme = "README.md"
+homepage = "https://github.com/vovchic17/CHSUScheduleAPI"
+repository = "https://github.com/vovchic17/CHSUScheduleAPI"
+keywords = ["chsu", "schedule", "api"]
+include = ["LICENSE"]
 
 [tool.poetry.dependencies]
 python = "^3.12"
