@@ -50,7 +50,7 @@ class Group(TimeTableType):
         )
 
 
-class TTFull(TimeTableType):
+class Full(TimeTableType):
     """Full time table model"""
 
     @property
