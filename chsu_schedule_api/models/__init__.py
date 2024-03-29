@@ -6,16 +6,17 @@ from .discipline import Discipline
 from .student_group import Chair, Faculty, StudentGroup
 from .teacher import Teacher
 from .timetable import (
+    Full,
     Group,
     Lecturer,
     TimeTable,
     TimeTableType,
     TTAuditory,
-    TTFull,
     TTStudentGroup,
 )
 
 __all__ = (
+    "Full",
     "Auditorium",
     "CHSUModel",
     "CHSUResponseModel",
@@ -32,6 +33,5 @@ __all__ = (
     "TimeTable",
     "TimeTableType",
     "TTAuditory",
-    "TTFull",
     "TTStudentGroup",
 )
