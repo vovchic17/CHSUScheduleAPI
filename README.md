@@ -28,6 +28,7 @@ pip install chsu_schedule_api
 ```
 
 ## Example
+Get building list
 ```python
 import asyncio
 
@@ -40,6 +41,39 @@ async def main() -> None:
     await client.auth_signin()
     buildings = await client.get_buildings()
     print(buildings)
+
+
+if __name__ == "__main__":
+    asyncio.run(main())
+```
+
+## Example
+Get your group schedule
+```python
+import asyncio
+
+from chsu_schedule_api import CHSUApi
+from chsu_schedule_api.models import Group
+
+client = CHSUApi(username="USERNAME", password="PASSWORD")
+
+async def main() -> None:
+    await client.auth_signin()
+    group_tt = await client.get_time_table(
+        Group(
+            title="1ИСб-01-1оп-22",
+            from_date="03.04.2024",
+            to_date="03.04.2024",
+        )
+    )
+
+    for tt in group_tt:
+        print(
+            tt.start_time,
+            tt.end_time,
+            tt.discipline.title,
+            tt.auditory.title
+        )
 
 
 if __name__ == "__main__":

@@ -15,6 +15,7 @@ from chsu_schedule_api.constants import (
 )
 from chsu_schedule_api.enums import Methods
 from chsu_schedule_api.errors import (
+    CHSUApiLookupError,
     CHSUApiResponseError,
     CHSUApiUnauthorizedError,
 )
@@ -23,9 +24,14 @@ from chsu_schedule_api.models import (
     Building,
     Department,
     Discipline,
+    Group,
+    GroupId,
+    Lecturer,
+    LecturerId,
     StudentGroup,
     Teacher,
     TimeTable,
+    TitleTimeTableType,
 )
 
 from .abc import ABCApi
@@ -46,7 +52,7 @@ class CHSUApi(ABCApi):
     ) -> None:
         self._headers = {"User-Agent": "/"}
         self._auth_data = {"username": username, "password": password}
-        self._client = client or AiohttpClient()
+        super().__init__(client or AiohttpClient())
 
     async def auth_signin(self) -> bool:
         """
@@ -118,9 +124,11 @@ class CHSUApi(ABCApi):
         raise CHSUApiResponseError(resp)
 
     async def get_time_table(
-        self, time_table: "TimeTableType"
+        self, time_table: "TimeTableType | TitleTimeTableType"
     ) -> list[TimeTable]:
         """Get timetable"""
+        if isinstance(time_table, TitleTimeTableType):
+            time_table = await self._get_id_by_title(time_table)
         resp = await self.request_json(
             Methods.GET,
             TIMETABLE + time_table.path,
@@ -143,3 +151,32 @@ class CHSUApi(ABCApi):
             Methods.GET, TEACHER, headers=self._headers
         )
         return [Teacher.model_validate(tch) for tch in resp]
+
+    async def _get_id_by_title(
+        self, title_tt: "TitleTimeTableType"
+    ) -> "TimeTableType":
+        """Get group or lecturer id"""
+        if isinstance(title_tt, Group):
+            groups = await self.get_student_groups()
+            for g in groups:
+                if g.title == title_tt.title:
+                    return GroupId(
+                        id=g.id,
+                        from_date=title_tt.from_date,
+                        to_date=title_tt.to_date,
+                    )
+            msg = f"Group {title_tt.title} not found"
+            raise CHSUApiLookupError(msg)
+        if isinstance(title_tt, Lecturer):
+            teachers = await self.get_teachers()
+            for t in teachers:
+                if t.fio == title_tt.fullname:
+                    return LecturerId(
+                        id=t.id,
+                        from_date=title_tt.from_date,
+                        to_date=title_tt.to_date,
+                    )
+            msg = f"Lecturer {title_tt.fullname} not found"
+            raise CHSUApiLookupError(msg)
+        msg = f"Invalid time table type: {title_tt.__class__}"
+        raise CHSUApiLookupError(msg)

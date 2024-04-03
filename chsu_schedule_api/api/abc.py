@@ -16,9 +16,8 @@ class ABCApi(ABC):
     _headers: dict[str, str]
 
     @abstractmethod
-    def __init__(
-        self, username: str, password: str, client: "ABCHttpClient | None"
-    ) -> None: ...
+    def __init__(self, client: "ABCHttpClient") -> None:
+        self._client = client
 
     async def request(
         self, method: "Methods", path: str, data: object = None, **kwargs

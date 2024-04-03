@@ -13,41 +13,53 @@ from .base import CHSUModel
 class TimeTableType(CHSUModel):
     """Base time table model"""
 
-    from_date: datetime
-    to_date: datetime
+    from_date: datetime | str
+    to_date: datetime | str
 
     @property
     @abstractmethod
     def path(self) -> str:
         """Time table path"""
 
+    def _dt_to_str(self) -> None:
+        if isinstance(self.from_date, datetime):
+            self.from_date = self.from_date.strftime("%d.%m.%Y")
+        if isinstance(self.to_date, datetime):
+            self.from_date = self.to_date.strftime("%d.%m.%Y")
 
-class Lecturer(TimeTableType):
-    """Lecturer time table model"""
+
+class TitleTimeTableType(CHSUModel):
+    """
+    Base model for time tables
+    that require pre id definition
+    """
+
+    from_date: datetime | str
+    to_date: datetime | str
+
+
+class LecturerId(TimeTableType):
+    """Lecturer time table by id model"""
 
     id: int
 
     @property
     def path(self) -> str:
         """Time table path"""
-        return (
-            f"/from/{self.from_date.strftime('%d.%m.%Y')}/to/"
-            f"{self.to_date.strftime('%d.%m.%Y')}/lecturerId/{self.id}"
-        )
+        super()._dt_to_str()
+        return f"/from/{self.from_date}/to/{self.to_date}/lecturerId/{self.id}"
 
 
-class Group(TimeTableType):
-    """Group time table model"""
+class GroupId(TimeTableType):
+    """Group time table by id model"""
 
     id: int
 
     @property
     def path(self) -> str:
         """Timetable path"""
-        return (
-            f"/from/{self.from_date.strftime('%d.%m.%Y')}/to/"
-            f"{self.to_date.strftime('%d.%m.%Y')}/groupId/{self.id}"
-        )
+        super()._dt_to_str()
+        return f"/from/{self.from_date}/to/{self.to_date}/groupId/{self.id}"
 
 
 class Full(TimeTableType):
@@ -56,10 +68,20 @@ class Full(TimeTableType):
     @property
     def path(self) -> str:
         """Timetable path"""
-        return (
-            f"/event/from/{self.from_date.strftime('%d.%m.%Y')}/to/"
-            f"{self.to_date.strftime('%d.%m.%Y')}"
-        )
+        super()._dt_to_str()
+        return f"/event/from/{self.from_date}/to/{self.to_date}"
+
+
+class Group(TitleTimeTableType):
+    """Group time table by title model"""
+
+    title: str
+
+
+class Lecturer(TitleTimeTableType):
+    """Lecturer time table by fullname model"""
+
+    fullname: str
 
 
 class TTStudentGroup(CHSUModel):

@@ -8,15 +8,21 @@ from .teacher import Teacher
 from .timetable import (
     Full,
     Group,
+    GroupId,
     Lecturer,
+    LecturerId,
     TimeTable,
     TimeTableType,
+    TitleTimeTableType,
     TTAuditory,
     TTStudentGroup,
 )
 
 __all__ = (
     "Full",
+    "Group",
+    "GroupId",
+    "Lecturer",
     "Auditorium",
     "CHSUModel",
     "CHSUResponseModel",
@@ -28,10 +34,10 @@ __all__ = (
     "Faculty",
     "StudentGroup",
     "Teacher",
-    "Group",
-    "Lecturer",
+    "LecturerId",
     "TimeTable",
     "TimeTableType",
+    "TitleTimeTableType",
     "TTAuditory",
     "TTStudentGroup",
 )
