@@ -8,3 +8,7 @@ class CHSUApiResponseError(CHSUApiBaseError):
 
 class CHSUApiUnauthorizedError(CHSUApiBaseError):
     """Unauthorized"""
+
+
+class CHSUApiLookupError(CHSUApiBaseError):
+    """Group or lecturer id lookup error"""
