@@ -25,7 +25,7 @@ class TimeTableType(CHSUModel):
         if isinstance(self.from_date, datetime):
             self.from_date = self.from_date.strftime("%d.%m.%Y")
         if isinstance(self.to_date, datetime):
-            self.from_date = self.to_date.strftime("%d.%m.%Y")
+            self.to_date = self.to_date.strftime("%d.%m.%Y")
 
 
 class TitleTimeTableType(CHSUModel):
