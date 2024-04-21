@@ -1,7 +1,7 @@
 from abc import abstractmethod
 from datetime import datetime, timedelta, timezone
 
-from pydantic import Field, validator
+from pydantic import Field, field_validator
 
 from chsu_schedule_api.models.building import Building
 from chsu_schedule_api.models.discipline import Discipline
@@ -14,7 +14,7 @@ class TimeTableType(CHSUModel):
     """Base time table model"""
 
     from_date: datetime | str
-    to_date: datetime | str
+    to_date: datetime | str | None = Field(default=None)
 
     @property
     @abstractmethod
@@ -35,7 +35,7 @@ class TitleTimeTableType(CHSUModel):
     """
 
     from_date: datetime | str
-    to_date: datetime | str
+    to_date: datetime | str | None = Field(default=None)
 
 
 class LecturerId(TimeTableType):
@@ -47,7 +47,10 @@ class LecturerId(TimeTableType):
     def path(self) -> str:
         """Time table path"""
         super()._dt_to_str()
-        return f"/from/{self.from_date}/to/{self.to_date}/lecturerId/{self.id}"
+        return (
+            f"/from/{self.from_date}/to/"
+            f"{self.to_date or self.from_date}/lecturerId/{self.id}"
+        )
 
 
 class GroupId(TimeTableType):
@@ -59,7 +62,10 @@ class GroupId(TimeTableType):
     def path(self) -> str:
         """Timetable path"""
         super()._dt_to_str()
-        return f"/from/{self.from_date}/to/{self.to_date}/groupId/{self.id}"
+        return (
+            f"/from/{self.from_date}/to/"
+            f"{self.to_date or self.from_date}/groupId/{self.id}"
+        )
 
 
 class Full(TimeTableType):
@@ -112,7 +118,7 @@ class TimeTable(CHSUModel):
     online_event: str | None = Field(alias="onlineEvent")
     online: int
 
-    @validator("date_event", pre=True)
+    @field_validator("date_event", mode="before")
     @classmethod
     def validate_datetime(cls, value: str) -> datetime:
         """Validate datetime"""
