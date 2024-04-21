@@ -60,10 +60,7 @@ client = CHSUApi(username="USERNAME", password="PASSWORD")
 async def main() -> None:
     await client.auth_signin()
     group_tt = await client.get_time_table(
-        Group(
-            title="1ИСб-01-1оп-22",
-            from_date="03.04.2024"
-        )
+        Group(title="1ИСб-01-1оп-22")
     )
 
     for tt in group_tt:
