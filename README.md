@@ -62,8 +62,7 @@ async def main() -> None:
     group_tt = await client.get_time_table(
         Group(
             title="1ИСб-01-1оп-22",
-            from_date="03.04.2024",
-            to_date="03.04.2024",
+            from_date="03.04.2024"
         )
     )
 
