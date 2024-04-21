@@ -13,7 +13,7 @@ from .base import CHSUModel
 class TimeTableType(CHSUModel):
     """Base time table model"""
 
-    from_date: datetime | str
+    from_date: datetime | str | None = Field(default=None)
     to_date: datetime | str | None = Field(default=None)
 
     @property
@@ -21,7 +21,12 @@ class TimeTableType(CHSUModel):
     def path(self) -> str:
         """Time table path"""
 
-    def _dt_to_str(self) -> None:
+    def _prepare_date(self) -> None:
+        tz = timezone(timedelta(hours=3))
+        if self.from_date is None:
+            self.from_date = datetime.now(tz=tz)
+        if self.to_date is None:
+            self.to_date = self.from_date
         if isinstance(self.from_date, datetime):
             self.from_date = self.from_date.strftime("%d.%m.%Y")
         if isinstance(self.to_date, datetime):
@@ -34,7 +39,7 @@ class TitleTimeTableType(CHSUModel):
     that require pre id definition
     """
 
-    from_date: datetime | str
+    from_date: datetime | str | None = Field(default=None)
     to_date: datetime | str | None = Field(default=None)
 
 
@@ -46,7 +51,7 @@ class LecturerId(TimeTableType):
     @property
     def path(self) -> str:
         """Time table path"""
-        super()._dt_to_str()
+        super()._prepare_date()
         return (
             f"/from/{self.from_date}/to/"
             f"{self.to_date or self.from_date}/lecturerId/{self.id}"
@@ -61,7 +66,7 @@ class GroupId(TimeTableType):
     @property
     def path(self) -> str:
         """Timetable path"""
-        super()._dt_to_str()
+        super()._prepare_date()
         return (
             f"/from/{self.from_date}/to/"
             f"{self.to_date or self.from_date}/groupId/{self.id}"
@@ -74,7 +79,7 @@ class Full(TimeTableType):
     @property
     def path(self) -> str:
         """Timetable path"""
-        super()._dt_to_str()
+        super()._prepare_date()
         return f"/event/from/{self.from_date}/to/{self.to_date}"
 
 
