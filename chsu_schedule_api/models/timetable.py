@@ -121,7 +121,7 @@ class TimeTable(CHSUModel):
     weekday: int
     week_type: str = Field(alias="weekType")
     online_event: str | None = Field(alias="onlineEvent")
-    online: int
+    online: bool
 
     @field_validator("date_event", mode="before")
     @classmethod
