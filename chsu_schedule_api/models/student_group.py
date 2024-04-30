@@ -21,3 +21,7 @@ class StudentGroup(CHSUResponseModel):
     course: int
     faculty: Faculty
     chair: Chair
+
+    def __str__(self) -> str:
+        """Return a string representation of the group"""
+        return f"<StudentGroup {self.title}>"

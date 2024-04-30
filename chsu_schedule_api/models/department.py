@@ -15,3 +15,7 @@ class Node(CHSUResponseModel):
 class Department(CHSUResponseModel):
     node: Node
     items: list["Department"]
+
+    def __str__(self) -> str:
+        """Return a string representation of the building"""
+        return f"<Department {self.node.title}>"

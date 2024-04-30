@@ -123,6 +123,13 @@ class TimeTable(CHSUModel):
     online_event: str | None = Field(alias="onlineEvent")
     online: bool
 
+    def __str__(self) -> str:
+        """Return a string representation of the time table"""
+        return (
+            f"<TimeTable {self.date_event.strftime('%d.%m.%Y')} "
+            f"{self.discipline.title} ауд. {self.auditory.title}>"
+        )
+
     @field_validator("date_event", mode="before")
     @classmethod
     def validate_datetime(cls, value: str) -> datetime:

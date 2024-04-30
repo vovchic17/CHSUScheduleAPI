@@ -12,3 +12,7 @@ class Auditorium(CHSUResponseModel):
     height: float
     length: float
     width: float
+
+    def __str__(self) -> str:
+        """Return a string representation of the auditorium"""
+        return f"<Auditorium {self.build_name}>"
