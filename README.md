@@ -7,7 +7,7 @@
 [![Checked with mypy](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/vovchic17/static/main/src/badges/mypy.json)](https://mypy-lang.org/)
 [![Poetry](https://img.shields.io/endpoint?url=https://python-poetry.org/badge/v0.json)](https://python-poetry.org/)
 
-Asynchronous API wrapper for [CHSU schedule API](api.chsu.ru)
+Asynchronous API wrapper for [CHSU schedule API](http://api.chsu.ru)
 
 ## Covered methods
 * Auth (validate token and sign in)
