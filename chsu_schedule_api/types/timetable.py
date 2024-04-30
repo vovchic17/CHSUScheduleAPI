@@ -3,9 +3,9 @@ from datetime import datetime, timedelta, timezone
 
 from pydantic import Field, field_validator
 
-from chsu_schedule_api.models.building import Building
-from chsu_schedule_api.models.discipline import Discipline
-from chsu_schedule_api.models.teacher import Teacher
+from chsu_schedule_api.types.building import Building
+from chsu_schedule_api.types.discipline import Discipline
+from chsu_schedule_api.types.teacher import Teacher
 
 from .base import CHSUModel
 

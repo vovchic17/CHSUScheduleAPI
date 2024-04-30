@@ -53,7 +53,7 @@ Get your group schedule
 import asyncio
 
 from chsu_schedule_api import CHSUApi
-from chsu_schedule_api.models import Group
+from chsu_schedule_api.types import Group
 
 client = CHSUApi(username="USERNAME", password="PASSWORD")
 

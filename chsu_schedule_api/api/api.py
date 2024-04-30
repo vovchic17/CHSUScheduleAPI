@@ -19,7 +19,7 @@ from chsu_schedule_api.errors import (
     CHSUApiResponseError,
     CHSUApiUnauthorizedError,
 )
-from chsu_schedule_api.models import (
+from chsu_schedule_api.types import (
     Auditorium,
     Building,
     Department,
@@ -38,7 +38,7 @@ from .abc import ABCApi
 
 if TYPE_CHECKING:
     from chsu_schedule_api.client.abc import ABCHttpClient
-    from chsu_schedule_api.models import TimeTableType
+    from chsu_schedule_api.types import TimeTableType
 
 
 class CHSUApi(ABCApi):
