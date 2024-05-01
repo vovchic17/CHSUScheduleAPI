@@ -52,6 +52,10 @@ class CHSUApi(ABCApi):
     ) -> None:
         self._headers = {"User-Agent": "/"}
         self._auth_data = {"username": username, "password": password}
+        self._cache: dict[str, dict[str, "TimeTableType"]] = {
+            "lecturers": {},
+            "groups": {},
+        }
         super().__init__(client or AiohttpClient())
 
     async def auth_signin(self) -> bool:
@@ -157,26 +161,36 @@ class CHSUApi(ABCApi):
     ) -> "TimeTableType":
         """Get group or lecturer id"""
         if isinstance(title_tt, Group):
+            if title_tt.title in self._cache["groups"]:
+                return self._cache["groups"][title_tt.title]
             groups = await self.get_student_groups()
             for g in groups:
                 if g.title == title_tt.title:
-                    return GroupId(
+                    group = GroupId(
                         id=g.id,
                         from_date=title_tt.from_date,
                         to_date=title_tt.to_date,
                     )
+                    self._cache["groups"][title_tt.title] = group
+                    return group
             msg = f"Group {title_tt.title} not found"
             raise CHSUApiLookupError(msg)
+
         if isinstance(title_tt, Lecturer):
+            if title_tt.fullname in self._cache["lecturers"]:
+                return self._cache["lecturers"][title_tt.fullname]
             teachers = await self.get_teachers()
             for t in teachers:
                 if t.fio == title_tt.fullname:
-                    return LecturerId(
+                    lecturer = LecturerId(
                         id=t.id,
                         from_date=title_tt.from_date,
                         to_date=title_tt.to_date,
                     )
+                    self._cache["lecturers"][title_tt.fullname] = lecturer
+                    return lecturer
             msg = f"Lecturer {title_tt.fullname} not found"
             raise CHSUApiLookupError(msg)
+
         msg = f"Invalid time table type: {title_tt.__class__}"
         raise CHSUApiLookupError(msg)
