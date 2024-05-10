@@ -44,6 +44,8 @@ if TYPE_CHECKING:
 class CHSUApi(ABCApi):
     """CHSU API wrapper"""
 
+    __slots__ = ("_headers", "_auth_data", "_cache")
+
     def __init__(
         self,
         username: str,

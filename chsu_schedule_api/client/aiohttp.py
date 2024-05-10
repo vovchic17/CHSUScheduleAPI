@@ -11,6 +11,8 @@ from .abc import ABCHttpClient
 class AiohttpClient(ABCHttpClient):
     """Http-client based on aiohttp"""
 
+    __slots__ = ("_session",)
+
     def __init__(self, session: ClientSession | None = None) -> None:
         self._session = session
 
