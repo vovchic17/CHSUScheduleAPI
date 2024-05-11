@@ -7,8 +7,7 @@ class ABCHttpClient(ABC):
     """ABC http-client class"""
 
     @abstractmethod
-    def __init__(self, *args, **kwargs) -> None:
-        ...
+    def __init__(self, *args, **kwargs) -> None: ...
 
     @abstractmethod
     async def request(

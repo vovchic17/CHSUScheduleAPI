@@ -30,5 +30,6 @@ def syncify(obj: object) -> None:
         ):
             async_to_sync(obj, name)
 
+
 for subclass in ABCApi.__subclasses__():
     syncify(subclass)
