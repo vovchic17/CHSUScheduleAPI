@@ -54,10 +54,5 @@ class AiohttpClient(ABCHttpClient):
 
     def __del__(self) -> None:
         """Close session connector"""
-        if (
-            self._session
-            and not self._session.closed
-            and self._session._connector is not None  # noqa: SLF001
-            and self._session._connector_owner  # noqa: SLF001
-        ):
-            self._session._connector._close()  # noqa: SLF001
+        if not self._session.closed:
+            self._session.connector.close()
