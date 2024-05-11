@@ -2,7 +2,7 @@ import asyncio
 import functools
 import inspect
 
-from .api import CHSUApi
+from .api import ABCApi
 
 
 def async_to_sync(obj: object, name: str) -> None:
@@ -30,5 +30,5 @@ def syncify(obj: object) -> None:
         ):
             async_to_sync(obj, name)
 
-
-syncify(CHSUApi)
+for subclass in ABCApi.__subclasses__():
+    syncify(subclass)
