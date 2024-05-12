@@ -1,0 +1,4 @@
+-r requirements.txt
+furo
+sphinx_copybutton
+https://github.com/vovchic17/CHSUScheduleAPI.git
