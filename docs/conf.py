@@ -17,6 +17,7 @@ html_css_files = [
 ]
 html_static_path = ["_static"]
 todo_include_todos = True
+html_show_sourcelink = False
 extensions = [
     "sphinx.ext.viewcode",
     "sphinx.ext.autodoc",
