@@ -5,12 +5,12 @@ CHSUScheduleAPI
 written in Python 3.12
 
 Synchronous usage
-------------
+-----------------
 
 .. literalinclude:: ../examples/sync_usage.py
 
 Asynchronous usage
-------------
+------------------
 
 .. literalinclude:: ../examples/async_usage.py
 

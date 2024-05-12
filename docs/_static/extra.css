@@ -22,25 +22,25 @@ pre {
 }
 
 a {
-    color: #69ad69 !important;
+    color: #aadd44 !important;
 }
 
 a:hover {
-    color: #77ee77 !important;
+    color: #bbee55 !important;
 }
 
 a:visited {
-    color: #55bb55 !important;
+    color: #88bb44 !important;
 }
 
 a:visited:hover {
-    color: #44aa44 !important;
+    color: #337733 !important;
 }
 
 .sig-name {
-    color: #66dd66
+    color: #aadd44
 }
 
 .sig-prename {
-    color: #77ee77
+    color: #bbee55
 }

@@ -1,5 +1,8 @@
-from datetime import date  # noqa: INP001
+import os  # noqa: INP001
+import sys
+from datetime import date
 
+sys.path.insert(0, os.path.abspath(".."))  # noqa: PTH100
 project = "CHSUScheduleAPI"
 author = "VoVcHiC"
 copyright = f"{date.today().year}, {author}"  # noqa: DTZ011, A001
