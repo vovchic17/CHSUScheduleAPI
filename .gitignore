@@ -6,5 +6,5 @@ _build/
 poetry.lock
 .env
 .venv
-test.py
+/tests
 dist
