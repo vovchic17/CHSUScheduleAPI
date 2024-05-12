@@ -44,3 +44,7 @@ a:visited:hover {
 .sig-prename {
     color: #bbee55
 }
+
+.view-this-page, .edit-this-page {
+    display: none !important;
+}
