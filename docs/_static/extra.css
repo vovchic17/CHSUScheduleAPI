@@ -1,0 +1,46 @@
+@font-face {
+    font-family: 'Cascadia Mono';
+    src: url(https://cdn.jsdelivr.net/npm/@fontsource/cascadia-mono@4.2.1/files/cascadia-mono-latin-ext-400-normal.woff2) format('woff2'),
+        url(https://cdn.jsdelivr.net/npm/@fontsource/cascadia-mono@4.2.1/files/cascadia-mono-latin-ext-400-normal.woff) format('woff');
+    font-style: normal;
+    font-weight: 400;
+}
+
+code,
+kbd,
+pre {
+    font-family: "Cascadia Mono", "Roboto Mono", "Courier New", Courier, monospace;
+}
+
+.nn {
+    text-decoration: none !important;
+    font-weight: bold;
+}
+
+.sidebar-logo {
+    width: 11em;
+}
+
+a {
+    color: #69ad69 !important;
+}
+
+a:hover {
+    color: #77ee77 !important;
+}
+
+a:visited {
+    color: #55bb55 !important;
+}
+
+a:visited:hover {
+    color: #44aa44 !important;
+}
+
+.sig-name {
+    color: #66dd66
+}
+
+.sig-prename {
+    color: #77ee77
+}
