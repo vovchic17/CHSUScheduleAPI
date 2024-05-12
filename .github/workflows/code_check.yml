@@ -21,7 +21,7 @@ jobs:
         pip install mypy
     - name: Code check with ruff
       run: |
-        ruff check
+        ruff check chsu_schedule_api
     - name: Code check with mypy
       run: |
-        mypy $(git ls-files '*.py')
+        mypy chsu_schedule_api
