@@ -1,5 +1,4 @@
-import sync
-
+from . import sync
 from .api import ABCApi, CHSUApi
 from .client import ABCHttpClient, AiohttpClient
 
