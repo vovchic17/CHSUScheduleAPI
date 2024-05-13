@@ -1,4 +1,4 @@
 from .abc import ABCApi
-from .api import CHSUApi
+from .chsu import CHSUApi
 
 __all__ = ("ABCApi", "CHSUApi")
