@@ -12,9 +12,8 @@ html_theme = "furo"
 html_logo = (
     "https://raw.githubusercontent.com/vovchic17/static/main/src/logo.svg"
 )
-html_css_files = [
-    "extra.css",
-]
+html_css_files = ["extra.css"]
+html_js_files = ["theme_modes.js"]
 html_static_path = ["_static"]
 todo_include_todos = True
 html_show_sourcelink = False
