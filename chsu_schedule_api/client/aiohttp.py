@@ -9,7 +9,7 @@ from .abc import ABCHttpClient
 
 
 class AiohttpClient(ABCHttpClient):
-    """Http-client based on aiohttp"""
+    """Http-client based on aiohttp."""
 
     __slots__ = ("_session",)
 
@@ -19,7 +19,14 @@ class AiohttpClient(ABCHttpClient):
     async def request(
         self, method: str, url: str, data: object = None, **kwargs
     ) -> str | None:
-        """Make an aiohttp raw request"""
+        """
+        Make an aiohttp request.
+
+        :param method: method for the request
+        :param url: request url
+        :param data: query string, defaults to None
+        :return: response data
+        """
         if not self._session:
             self._session = ClientSession()
         response = await self._session.request(
@@ -30,7 +37,16 @@ class AiohttpClient(ABCHttpClient):
     async def request_json(
         self, method: str, url: str, data: object = None, **kwargs
     ) -> dict | list | str | int:
-        """Make an aiohttp raw request"""
+        """
+        Make an aiohttp request.
+
+        :param method: method for the request
+        :param url: request url
+        :param data: query string, defaults to None
+        :raises CHSUApiUnauthorizedError:
+        :raises CHSUApiResponseError:
+        :return: response json data
+        """
         if not self._session:
             self._session = ClientSession()
 
@@ -48,11 +64,11 @@ class AiohttpClient(ABCHttpClient):
         return await response.json()
 
     async def close(self) -> None:
-        """Close aiohttp session"""
+        """Close aiohttp session."""
         if self._session and not self._session.closed:
             await self._session.close()
 
     def __del__(self) -> None:
-        """Close session connector"""
+        """Close session connector."""
         if not self._session.closed:
             self._session.connector.close()
