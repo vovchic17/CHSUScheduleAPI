@@ -16,7 +16,9 @@ Asynchronous usage
 
 Features
 ========
-* Supports 
+* Supports synchronous and asynchronous usage
+* Has type hints
+* Supports time table search by group title and lecturer name
 
 Contents
 ========
@@ -26,3 +28,4 @@ Contents
    client
    api
    types
+   errors
