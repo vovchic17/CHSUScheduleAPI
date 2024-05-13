@@ -4,6 +4,8 @@ from .base import CHSUResponseModel
 
 
 class Auditorium(CHSUResponseModel):
+    """Auditorium model."""
+
     id: int
     name: str
     number: str

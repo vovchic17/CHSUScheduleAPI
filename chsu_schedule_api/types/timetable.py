@@ -96,16 +96,22 @@ class Lecturer(TitleTimeTableType):
 
 
 class TTStudentGroup(CHSUModel):
+    """Student group model used in :class:`TimeTable`."""
+
     id: int
     title: str
 
 
 class TTAuditory(CHSUModel):
+    """Auditory model used in :class:`TimeTable`."""
+
     id: int
     title: str
 
 
 class TimeTable(CHSUModel):
+    """Time table model."""
+
     id: int
     date_event: datetime = Field(alias="dateEvent")
     start_time: str = Field(alias="startTime")

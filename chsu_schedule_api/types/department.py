@@ -4,6 +4,8 @@ from .base import CHSUResponseModel
 
 
 class Node(CHSUResponseModel):
+    """Department node model."""
+
     id: int
     parent_id: int = Field(alias="parentId")
     title: str
@@ -13,6 +15,8 @@ class Node(CHSUResponseModel):
 
 
 class Department(CHSUResponseModel):
+    """Department model."""
+
     node: Node
     items: list["Department"]
 

@@ -2,6 +2,8 @@ from .base import CHSUResponseModel
 
 
 class Discipline(CHSUResponseModel):
+    """Discipline model."""
+
     id: int
     title: str
 

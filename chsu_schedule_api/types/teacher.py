@@ -4,6 +4,8 @@ from .base import CHSUResponseModel
 
 
 class Teacher(CHSUResponseModel):
+    """Teacher model."""
+
     id: int
     last_name: str = Field(alias="lastName")
     first_name: str = Field(alias="firstName")

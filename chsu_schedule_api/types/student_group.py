@@ -16,6 +16,8 @@ class Chair(CHSUResponseModel):
 
 
 class StudentGroup(CHSUResponseModel):
+    """StudentGroup model."""
+
     id: int
     title: str
     course: int
