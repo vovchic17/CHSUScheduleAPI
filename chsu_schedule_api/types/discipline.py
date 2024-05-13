@@ -6,5 +6,5 @@ class Discipline(CHSUResponseModel):
     title: str
 
     def __str__(self) -> str:
-        """Return a string representation of the discipline"""
+        """Return a string representation of the discipline."""
         return f"<Discipline {self.title}>"

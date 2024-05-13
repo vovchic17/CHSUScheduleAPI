@@ -12,5 +12,5 @@ class Teacher(CHSUResponseModel):
     fio: str
 
     def __str__(self) -> str:
-        """Return a string representation of the teacher"""
+        """Return a string representation of the teacher."""
         return f"<Teacher {self.fio}>"

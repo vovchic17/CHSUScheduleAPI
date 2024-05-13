@@ -1,3 +1,9 @@
+"""
+Module rewrites all the public methods of the subclasses
+of :code:`ABCApi` class of the library so they can run
+the loop on their own if it's not already running.
+"""
+
 import asyncio
 import functools
 import inspect

@@ -11,7 +11,7 @@ from .base import CHSUModel
 
 
 class TimeTableType(CHSUModel):
-    """Base time table model"""
+    """Base time table model."""
 
     from_date: datetime | str | None = Field(default=None)
     to_date: datetime | str | None = Field(default=None)
@@ -19,7 +19,7 @@ class TimeTableType(CHSUModel):
     @property
     @abstractmethod
     def path(self) -> str:
-        """Time table path"""
+        """Time table path."""
 
     def _prepare_date(self) -> None:
         tz = timezone(timedelta(hours=3))
@@ -36,7 +36,7 @@ class TimeTableType(CHSUModel):
 class TitleTimeTableType(CHSUModel):
     """
     Base model for time tables
-    that require pre id definition
+    that require pre id definition.
     """
 
     from_date: datetime | str | None = Field(default=None)
@@ -44,13 +44,13 @@ class TitleTimeTableType(CHSUModel):
 
 
 class LecturerId(TimeTableType):
-    """Lecturer time table by id model"""
+    """Lecturer time table by id model."""
 
     id: int
 
     @property
     def path(self) -> str:
-        """Time table path"""
+        """Time table path."""
         super()._prepare_date()
         return (
             f"/from/{self.from_date}/to/"
@@ -59,13 +59,13 @@ class LecturerId(TimeTableType):
 
 
 class GroupId(TimeTableType):
-    """Group time table by id model"""
+    """Group time table by id model."""
 
     id: int
 
     @property
     def path(self) -> str:
-        """Timetable path"""
+        """Time table path."""
         super()._prepare_date()
         return (
             f"/from/{self.from_date}/to/"
@@ -74,23 +74,23 @@ class GroupId(TimeTableType):
 
 
 class Full(TimeTableType):
-    """Full time table model"""
+    """Full time table model."""
 
     @property
     def path(self) -> str:
-        """Timetable path"""
+        """Time table path."""
         super()._prepare_date()
         return f"/event/from/{self.from_date}/to/{self.to_date}"
 
 
 class Group(TitleTimeTableType):
-    """Group time table by title model"""
+    """Group time table by title model."""
 
     title: str
 
 
 class Lecturer(TitleTimeTableType):
-    """Lecturer time table by fullname model"""
+    """Lecturer time table by fullname model."""
 
     fullname: str
 
@@ -124,7 +124,7 @@ class TimeTable(CHSUModel):
     online: bool
 
     def __str__(self) -> str:
-        """Return a string representation of the time table"""
+        """Return a string representation of the time table."""
         return (
             f"<TimeTable {self.date_event.strftime('%d.%m.%Y')} "
             f"{self.discipline.title} ауд. {self.auditory.title}>"
@@ -133,6 +133,6 @@ class TimeTable(CHSUModel):
     @field_validator("date_event", mode="before")
     @classmethod
     def validate_datetime(cls, value: str) -> datetime:
-        """Validate datetime"""
+        """Validate datetime."""
         tz = timezone(timedelta(hours=3))
         return datetime.strptime(value, "%d.%m.%Y").replace(tzinfo=tz)

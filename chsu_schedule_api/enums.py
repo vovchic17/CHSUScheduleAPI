@@ -2,7 +2,7 @@ from enum import StrEnum
 
 
 class Methods(StrEnum):
-    """Http methods"""
+    """Http methods."""
 
     GET = "GET"
     POST = "POST"

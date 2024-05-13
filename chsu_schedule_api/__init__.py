@@ -1,6 +1,6 @@
-from chsu_schedule_api.sync import ABCApi
+import sync
 
-from .api import CHSUApi
+from .api import ABCApi, CHSUApi
 from .client import ABCHttpClient, AiohttpClient
 
-__all__ = ("ABCApi", "ABCHttpClient", "AiohttpClient", "CHSUApi")
+__all__ = ("ABCApi", "ABCHttpClient", "AiohttpClient", "CHSUApi", "sync")

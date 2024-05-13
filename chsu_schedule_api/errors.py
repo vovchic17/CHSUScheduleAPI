@@ -1,14 +1,14 @@
 class CHSUApiBaseError(Exception):
-    """Base CHSU api error"""
+    """Base CHSU api error."""
 
 
 class CHSUApiResponseError(CHSUApiBaseError):
-    """Api response is invalid"""
+    """Api response is invalid."""
 
 
 class CHSUApiUnauthorizedError(CHSUApiBaseError):
-    """Unauthorized"""
+    """Unauthorized."""
 
 
 class CHSUApiLookupError(CHSUApiBaseError):
-    """Group or lecturer id lookup error"""
+    """Group or lecturer id lookup error."""

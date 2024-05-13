@@ -2,14 +2,14 @@ from .base import CHSUResponseModel
 
 
 class Faculty(CHSUResponseModel):
-    """Faculty model"""
+    """Faculty model."""
 
     id: int
     title: str
 
 
 class Chair(CHSUResponseModel):
-    """Cathedra model"""
+    """Cathedra model."""
 
     id: int
     title: str
@@ -23,5 +23,5 @@ class StudentGroup(CHSUResponseModel):
     chair: Chair
 
     def __str__(self) -> str:
-        """Return a string representation of the group"""
+        """Return a string representation of the group."""
         return f"<StudentGroup {self.title}>"
