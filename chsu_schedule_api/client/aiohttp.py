@@ -25,7 +25,7 @@ class AiohttpClient(ABCHttpClient):
         :param method: method for the request
         :param url: request url
         :param data: query string, defaults to None
-        :return: response data
+        :return: response raw data
         """
         if not self._session:
             self._session = ClientSession()
@@ -38,13 +38,13 @@ class AiohttpClient(ABCHttpClient):
         self, method: str, url: str, data: object = None, **kwargs
     ) -> dict | list | str | int:
         """
-        Make an aiohttp request.
+        Make an aiohttp json request.
 
         :param method: method for the request
         :param url: request url
         :param data: query string, defaults to None
-        :raises CHSUApiUnauthorizedError:
-        :raises CHSUApiResponseError:
+        :raises CHSUApiUnauthorizedError: auth token is expired
+        :raises CHSUApiResponseError: invalid response
         :return: response json data
         """
         if not self._session:

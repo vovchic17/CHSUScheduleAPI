@@ -9,7 +9,13 @@ if TYPE_CHECKING:
 
 
 class ABCApi(ABC):
-    """Abstract API class"""
+    """
+    Abstract API class.
+    If you want to create your own API,
+    you should inherit this class.
+    """
+
+    __slots__ = ("_client", "_auth_data", "_headers")
 
     _client: "ABCHttpClient"
     _auth_data: dict[str, str]
@@ -22,7 +28,7 @@ class ABCApi(ABC):
     async def request(
         self, method: "Methods", path: str, data: object = None, **kwargs
     ) -> str | None:
-        """Make http request"""
+        """Make http request."""
         return await self._client.request(
             method, f"{BASE_URL}{path}", data=data, **kwargs
         )
@@ -30,7 +36,7 @@ class ABCApi(ABC):
     async def request_json(
         self, method: "Methods", path: str, data: object = None, **kwargs
     ) -> dict | list | str | int:
-        """Make http request"""
+        """Make json http request."""
         return await self._client.request_json(
             method, f"{BASE_URL}{path}", data=data, **kwargs
         )

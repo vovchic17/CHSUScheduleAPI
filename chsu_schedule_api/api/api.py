@@ -42,9 +42,9 @@ if TYPE_CHECKING:
 
 
 class CHSUApi(ABCApi):
-    """CHSU API wrapper"""
+    """CHSU API wrapper class."""
 
-    __slots__ = ("_headers", "_auth_data", "_cache")
+    __slots__ = ("_cache",)
 
     def __init__(
         self,
@@ -62,8 +62,11 @@ class CHSUApi(ABCApi):
 
     async def auth_signin(self) -> bool:
         """
-        Authorize
-        Returns true on success
+        Authorize method.
+
+        :raises CHSUApiUnauthorizedError: Invalid auth data
+        :raises CHSUApiResponseError: invalid response
+        :return: On success, :code:`True` is returned.
         """
         resp = await self.request_json(
             Methods.POST,
@@ -81,7 +84,12 @@ class CHSUApi(ABCApi):
         raise CHSUApiResponseError(resp)
 
     async def auth_valid(self, token: str) -> bool:
-        """Check if the token is valid"""
+        """
+        Validate auth token.
+
+        :param token: auth token
+        :return: If token is valid, :code:`True` is returned.
+        """
         resp = await self.request_json(
             Methods.POST,
             AUTH_VALID,
@@ -91,35 +99,65 @@ class CHSUApi(ABCApi):
         return bool(resp)
 
     async def get_buildings(self) -> list[Building]:
-        """Get building list"""
+        """
+        Get buildings method.
+
+        Get list of all buildings.
+
+        :return:
+        """
         resp = await self.request_json(
             Methods.GET, BUILDING, headers=self._headers
         )
         return [Building.model_validate(bld) for bld in resp]
 
     async def get_student_groups(self) -> list[StudentGroup]:
-        """Get student group list"""
+        """
+        Get student groups method.
+
+        Get list of all student groups.
+
+        :return:
+        """
         resp = await self.request_json(
             Methods.GET, STUDENT_GROUP, headers=self._headers
         )
         return [StudentGroup.model_validate(gr) for gr in resp]
 
     async def get_departments(self) -> Department:
-        """Get department list"""
+        """
+        Get departments method.
+
+        Get departments node tree
+
+        :return:
+        """
         resp = await self.request_json(
             Methods.GET, DEPARTMENT, headers=self._headers
         )
         return Department.model_validate(resp)
 
     async def get_auditoriums(self) -> list[Auditorium]:
-        """Get auditorium list"""
+        """
+        Get auditoriums method.
+
+        Get list of all auditoriums.
+
+        :return:
+        """
         resp = await self.request_json(
             Methods.GET, AUDITORIUM, headers=self._headers
         )
         return [Auditorium.model_validate(aud) for aud in resp]
 
     async def get_numweek(self, date: datetime) -> int:
-        """Get number of week by date"""
+        """
+        Get the number of the academic week for a given date.
+
+        :param date: week date
+        :raises CHSUApiResponseError: invalid response
+        :return: Number of the academic week
+        """
         resp = await self.request_json(
             Methods.GET,
             TIMETABLE + f"/numweek/{date.strftime("%d.%m.%Y")}/",
@@ -132,7 +170,15 @@ class CHSUApi(ABCApi):
     async def get_time_table(
         self, time_table: "TimeTableType | TitleTimeTableType"
     ) -> list[TimeTable]:
-        """Get timetable"""
+        """
+        Get time table method.
+
+        Get a time table for a specific lecturer, group, or get a full schedule
+
+        :param time_table:
+        :raises CHSUApiResponseError: invalid response
+        :return:
+        """
         if isinstance(time_table, TitleTimeTableType):
             time_table = await self._get_id_by_title(time_table)
         resp = await self.request_json(
@@ -145,14 +191,26 @@ class CHSUApi(ABCApi):
         raise CHSUApiResponseError(resp)
 
     async def get_disciplines(self) -> list[Discipline]:
-        """Get discipline list"""
+        """
+        Get disciplines method.
+
+        Get list of all disciplines.
+
+        :return:
+        """
         resp = await self.request_json(
             Methods.GET, DISCIPLINE, headers=self._headers
         )
         return [Discipline.model_validate(dsc) for dsc in resp]
 
     async def get_teachers(self) -> list[Teacher]:
-        """Get teacher list"""
+        """
+        Get teachers method.
+
+        Get list of all teachers.
+
+        :return:
+        """
         resp = await self.request_json(
             Methods.GET, TEACHER, headers=self._headers
         )
@@ -161,7 +219,13 @@ class CHSUApi(ABCApi):
     async def _get_id_by_title(
         self, title_tt: "TitleTimeTableType"
     ) -> "TimeTableType":
-        """Get group or lecturer id"""
+        """
+        Get :code:`TimeTableType` from :code:`TitleTimeTableType`.
+
+        :param title_tt: title time table object
+        :raises CHSUApiLookupError: Group or Lecturer not found
+        :return:
+        """
         if isinstance(title_tt, Group):
             if title_tt.title in self._cache["groups"]:
                 return self._cache["groups"][title_tt.title]
