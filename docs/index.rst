@@ -30,6 +30,14 @@ Contents
    
    install
    client
+
+.. toctree::
+   :maxdepth: 4
+
    api
+
+.. toctree::
+   :maxdepth: 2
+
    types
    errors
