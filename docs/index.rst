@@ -26,6 +26,7 @@ Asynchronous usage
 Contents
 ========
 .. toctree::
+   :maxdepth: 2
    
    install
    client
