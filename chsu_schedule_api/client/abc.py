@@ -4,7 +4,11 @@ from typing import Self
 
 
 class ABCHttpClient(ABC):
-    """ABC http-client class"""
+    """
+    Abstract http client class.
+    If you want to implement your own
+    client, you should inherit this class.
+    """
 
     @abstractmethod
     def __init__(self, *args, **kwargs) -> None: ...
@@ -13,20 +17,20 @@ class ABCHttpClient(ABC):
     async def request(
         self, method: str, url: str, data: object = None, **kwargs
     ) -> str | None:
-        """Make a raw http request"""
+        """Make a raw http request."""
 
     @abstractmethod
     async def request_json(
         self, method: str, url: str, data: object = None, **kwargs
     ) -> dict | list | str | int:
-        """Make a json http request"""
+        """Make a json http request."""
 
     @abstractmethod
     async def close(self) -> None:
-        """Close http session"""
+        """Close http session."""
 
     async def __aenter__(self) -> Self:
-        """Enter async context manager"""
+        """Enter async context manager."""
         return self
 
     async def __aexit__(
@@ -35,5 +39,5 @@ class ABCHttpClient(ABC):
         exc_val: BaseException | None,
         exc_tb: TracebackType | None,
     ) -> None:
-        """Exit async context manager"""
+        """Exit async context manager."""
         await self.close()
