@@ -1,7 +1,4 @@
 // workaround to remove `auto` theme
-if (window.matchMedia("(prefers-color-scheme: dark)").matches)
-    document.body.dataset.theme = "dark";
-
 function setTheme(mode) {
     document.body.dataset.theme = mode;
     localStorage.setItem("theme", mode);

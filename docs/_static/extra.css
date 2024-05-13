@@ -6,6 +6,20 @@
     font-weight: 400;
 }
 
+:root {
+    --color1: #aadd44;
+    --color2: #bbee55;
+    --color3: #88bb44;
+    --color4: #337733;
+}
+
+[data-theme="light"] {
+    --color1: #00aa00;
+    --color2: #008800;
+    --color3: #009900;
+    --color4: #006600;
+}
+
 code,
 kbd,
 pre {
@@ -17,34 +31,30 @@ pre {
     font-weight: bold;
 }
 
+.view-this-page,
+.edit-this-page {
+    display: none !important;
+}
+
 .sidebar-logo {
     width: 11em;
 }
 
-a {
-    color: #aadd44 !important;
+a,
+.sig-name {
+    color: var(--color1) !important;
 }
 
-a:hover {
-    color: #bbee55 !important;
+a:hover,
+.sig-prename {
+    color: var(--color2) !important;
 }
+
 
 a:visited {
-    color: #88bb44 !important;
+    color: var(--color3) !important;
 }
 
 a:visited:hover {
-    color: #337733 !important;
-}
-
-.sig-name {
-    color: #aadd44
-}
-
-.sig-prename {
-    color: #bbee55
-}
-
-.view-this-page, .edit-this-page {
-    display: none !important;
+    color: var(--color4) !important;
 }
