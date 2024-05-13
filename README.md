@@ -9,6 +9,9 @@
 
 API wrapper for [CHSU schedule API](http://api.chsu.ru)
 
+## Documentation
+* [English](https://chsuscheduleapi.readthedocs.io/en/latest/)
+
 ## Covered methods
 * Auth (validate token and sign in)
 * Building (get building list)
