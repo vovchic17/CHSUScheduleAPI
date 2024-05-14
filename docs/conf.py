@@ -16,10 +16,10 @@ html_static_path = ["_static"]
 todo_include_todos = True
 html_show_sourcelink = False
 
-ogp_site_url = "https://docs.chsutech.ru"
+ogp_site_url = "https://docs.chsutech.ru/en/latest/"
 ogp_site_name = "CHSUScheduleAPI documentation"
 ogp_description_length = 0
-ogp_social_cards = {"image_mini": "_static/rtd.ico", "description": "test"}
+ogp_social_cards = {"image_mini": "_static/rtd.ico"}
 
 extensions = [
     "sphinx.ext.viewcode",
