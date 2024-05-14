@@ -50,6 +50,11 @@ ignore = [
 select = ["ALL"]
 fixable = ["ALL"]
 
+[tool.ruff.lint.per-file-ignores]
+"tests/*" = ["ALL"]
+"examples/*" = ["ALL"]
+"conf.py" = ["ALL"]
+
 [tool.ruff.format]
 quote-style = "double"
 indent-style = "space"
@@ -63,6 +68,9 @@ disable_error_code = [
     "import-untyped",
     "union-attr",
 ]
+
+[tool.mypy]
+exclude = "tests"
 
 [build-system]
 requires = ["poetry-core"]
