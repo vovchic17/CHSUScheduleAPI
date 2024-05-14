@@ -26,26 +26,17 @@ target-version = "py312"
 
 [tool.ruff.lint]
 ignore = [
-    "ANN101",
-    "ANN102",
-    "ANN002",
-    "ANN003",
-    "D100",
-    "D104",
-    "D106",
-    "D107",
-    "D203",
-    "D205",
-    "D212",
-    "D415",
-    "COM812",
-    "RUF001",
-    "RUF002",
-    "RUF003",
-    "PLR0913",
-    "PLR2004",
-    "PD011",
-    "S101",
+    "ANN101", # missing-type-self
+    "ANN102", # missing-type-cls
+    "ANN002", # missing-type-args
+    "ANN003", # missing-type-kwargs
+    "D100",   # undocumented-public-module
+    "D104",   # undocumented-public-package
+    "D106",   # undocumented-public-nested-class
+    "D107",   # undocumented-public-init
+    "D203",   # one-blank-line-before-class
+    "D212",   # multi-line-summary-first-line
+    "COM812", # missing-trailing-comma
 ]
 select = ["ALL"]
 fixable = ["ALL"]
