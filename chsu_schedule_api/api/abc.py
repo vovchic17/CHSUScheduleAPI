@@ -11,6 +11,7 @@ if TYPE_CHECKING:
 class ABCApi(ABC):
     """
     Abstract API class.
+
     If you want to create your own API,
     you should inherit this class.
     """

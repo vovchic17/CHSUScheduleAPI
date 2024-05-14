@@ -35,8 +35,10 @@ class TimeTableType(CHSUModel):
 
 class TitleTimeTableType(CHSUModel):
     """
-    Base model for time tables
-    that require pre id definition.
+    Base model for time tables.
+
+    This type of time table
+    requires pre id definition.
     """
 
     from_date: datetime | str | None = Field(default=None)

@@ -1,4 +1,6 @@
 """
+A magic module that allows you to synchronously run async methods.
+
 Module rewrites all the public methods of the subclasses
 of :code:`ABCApi` class of the library so they can run
 the loop on their own if it's not already running.
@@ -12,10 +14,7 @@ from .api import ABCApi
 
 
 def async_to_sync(obj: object, name: str) -> None:
-    """
-    Set asyncio event loop
-    if it's not running.
-    """
+    """Set asyncio event loop if it's not running."""
     method = getattr(obj, name)
 
     @functools.wraps(method)
@@ -34,10 +33,7 @@ def async_to_sync(obj: object, name: str) -> None:
 
 
 def syncify(obj: object) -> None:
-    """
-    Add decorators to all public
-    methods of the object.
-    """
+    """Add decorators to all public methods of the object."""
     for name in dir(obj):
         if not name.startswith("_") and inspect.iscoroutinefunction(
             getattr(obj, name)

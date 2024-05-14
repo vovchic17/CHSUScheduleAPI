@@ -6,6 +6,7 @@ from typing import Self
 class ABCHttpClient(ABC):
     """
     Abstract http client class.
+
     If you want to implement your own
     client, you should inherit this class.
     """
